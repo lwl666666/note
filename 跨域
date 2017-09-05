@@ -1,0 +1,22 @@
+http://www.baidu.com:8080/index.html
+协议 子域名 主域名 端口号 请求资源地址
+
+当协议、子域名、主域名、端口号中任意一个不同时，都称作不同域
+不同域之间请求资源就叫做“跨域”
+例如:
+	http://abc.com/index.html请求http://www.edf.com/service.php
+
+
+javascript出于安全方面的考虑，不允许跨域调用其他页面的对象。什么是跨域呢？简单理解就是因为javascript同源策略的限制，abc.com下的js无法操作和访问bef.com下的对象
+解决跨域的方法
+1.通过在同域名的web服务器创建一个代理
+就是说在bdf.com服务器的后台调用abc.com的服务，把响应的结果返回给前台。这边是后台的技术不做探讨
+2.JSONP
+JSONP（JSON with Padding）是json的一种使用模式，可以让别的域名获取资料，即跨域读取数据
+用Jquery的ajax方法调用跨域的服务时在请求时设置datatype类型为jsonp,jsonp设置一个字符串值
+后台php
+3.XHR2
+XHR2(XMLHttpRequest Level2)是Html5提供的实现了跨域访问以及其他的一些新功能的方法（IE10以下版本不支持）
+在服务器端设置
+header('Access-Control-Allow-Origin:*') 设置可访问的域名 *代表所有都可以访问
+header('Access-Control-Allow-Methods:POST,GET')
