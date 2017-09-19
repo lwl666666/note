@@ -1,4 +1,4 @@
-### 指令
+### Vue常用指令
 指令（Directive）是带有“v-”前缀的特殊属性，它的值是单个JavaScript表达式，指令的职责是当表达式的值发生变化时，响应式的更新dom。
 Vue和Angular的指令十分相似，如果有学过Angular在学习vue的指令时会感到十分亲切。
 ### 1.文本
@@ -56,7 +56,7 @@ var demo2 = new Vue({
 	}
 }); 
 ```
-属性中的特例，为的是方便更好的绑定式样，class和style的值不仅可以是字符串还可以是对象和数组。而且v-bind:class的值还可以与其他普通的class共存
+属性中的特例，为了更好的绑定式样，class和style的值不仅可以是字符串还可以是对象和数组。而且v-bind:class的值还可以与其他普通的class共存
 ```bash
 <div id="classDemo">
 	<p class="mini-font-size" v-bind:class="{active:isActive,'text-success'}">test</p>
