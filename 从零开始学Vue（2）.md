@@ -1,6 +1,7 @@
+### 指令
 指令（Directive）是带有“v-”前缀的特殊属性，它的值是单个JavaScript表达式，指令的职责是当表达式的值发生变化时，响应式的更新dom。
 Vue和Angular的指令十分相似，如果有学过Angular在学习vue的指令时会感到十分亲切。
-1.文本
+### 1.文本
 Vue中向html中插值的方法有三种
 {{}} v-html v-text 
 （1）Mustache语法
@@ -34,7 +35,7 @@ v-text和Mustache语法会直接将数据展示，对于数据是html代码将�
 	<sapn>Hello World</sapn>
 </div>
 ```bash
-2.属性
+### 2.属性
 Mustache语法不能将数据绑定到html属性上，vue为绑定数据到html属性上提给了v-bind指令。v-bind的缩写为“:”
 ```bash
 <!--完整语法 -->
@@ -73,7 +74,7 @@ data:{
 </div>
 ```bash
 
-3.监听事件
+### 3.监听事件
 为dom上绑定监听事件需要用到v-on指令。v-on的缩写为“@”
 ```bash
 <!--完整语法 -->
@@ -100,7 +101,7 @@ var demo5 = new Vue({
 	}
 });
 ```bash
-4.条件渲染
+### 4.条件渲染
 v-if和v-show可以用于页面元素的展示和隐藏。
 ```bash
 <div id="demo3">
@@ -125,7 +126,7 @@ v-if是“真正的”的条件渲染，当为true时组件会被渲染，而当
 v-show时无论true还是false组件都会被渲染，只是基于css的切换。
 两者比较v-if有更高的切换开销，而v-show可能会有更高的初始化开销
 所以当页面中需要频繁的切换则使用v-show较好，而如果在初始化之后条件不太可能发生变化，使用v-if比较好。
-5.表单输入绑定
+### 5.表单输入绑定
 你可以使用v-model元素在表单元素上进行双向数据绑定
 ```bash
 <div id="demo6">
@@ -140,7 +141,7 @@ var demo6 = new Vue({
 	}
 });
 ```bash
-6.列表渲染
+### 6.列表渲染
 是用v-for进行列表渲染，v-for需要使用“item in items”的语法
 ```bash
 <div id="demo4">
