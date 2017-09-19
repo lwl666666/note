@@ -8,7 +8,7 @@ Vue中向html中插值的方法有三种
 Mustache语法（双大括号）是比较常见的数据绑定形式,当大双括号中绑定的数据对象更新时，相应的插值处的值也会更新
 ```bash
 <sapn>{{message}}</sapn>
-```bash
+```
 如果有时你只希望只在页面初始化时进行插值，之后数据更新不在更新插值出的内容可以使用“v-once”指令
 ```bash
 <sapn v-once>{{message}}</sapn>
