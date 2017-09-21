@@ -3,18 +3,19 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<script type="text/javascript" src="jquery.min.js"></script>
 	<script type="text/javascript" src="main.js"></script>
 	<title>2048</title>
 </head>
 <body>
 	<div class="page">
-		<h1>2048</h1>
-		<p class="intro">操作说明：操作 ← ↑ → ↓ 移动数字，相同数字可以进行相加合并</p>
 		<div class="score_container">
 			<p class="highestScore">Highest Score: <span id="highestScore"></span></p>
-			<p>Score:<span id="score">0</span></p>
+			<h1>2048</h1>
+			<p id="intro">PC端请使用“← ↑ → ↓“方向键移动方块</p>
 			<div><span class="btn" id="newgame">New Game</span></div>
+			<p>Score:<span id="score">0</span></p>
 		</div>
 		<div class="grid_container">
 			<div class="grid" id="grid_0_0"></div>
