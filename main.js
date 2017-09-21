@@ -1,9 +1,57 @@
-var score = 0 ;
-var grids = new Array();
-var hasMoved = new Array();
-
+var screenWidth,
+ 	screenHight,
+ 	numberCellWidth,
+ 	spaceWidth,
+ 	gridContainerWidth,
+ 	startX,
+ 	startY,
+ 	endX,
+ 	endY
+	score = 0 ;
+ 	grids = new Array(),
+ 	hasMoved = new Array();
 $(document).ready(function(){
 	debugger;	
+	initSize();
+	document.addEventListener("touchstart",function(event){
+		debugger;
+		startX = event.touches[0].pageX;
+		startY = event.touches[0].pageY;
+	});
+	document.addEventListener("touchend",function(event){
+		debugger;
+		endX = event.changedTouches[0].pageX;
+		endY = event.changedTouches[0].pageY;
+		deltaX = endX - startX;
+		deltaY = endY - startY;
+		if(Math.abs(deltaX)>screenWidth*0.1 || Math.abs(deltaY)>screenHight*0.1){
+			if(Math.abs(deltaX)>=Math.abs(deltaY)){
+				if(deltaX>=0){
+					if(moveRight()<screenWidth){
+						setTimeout("randomNumber()",200);
+					}
+					setTimeout("isGameOver()",200);
+				}else{
+					if(moveLeft()){
+						setTimeout("randomNumber()",200);
+					}
+					setTimeout("isGameOver()",200);
+				}
+			}else{
+				if(deltaY>=0){
+					if(moveDown()){
+						setTimeout("randomNumber()",200);
+					}
+					setTimeout("isGameOver()",200);
+				}else{
+					if(moveUp()){
+						setTimeout("randomNumber()",200);
+					}
+					setTimeout("isGameOver()",200);	
+				}
+			}
+		}
+	});
 	newgame();
 	$("#newgame").on("click",function(){
 		debugger;
@@ -38,6 +86,35 @@ $(document).ready(function(){
 		}
 	})
 });
+function initSize(){
+	debugger;
+	screenWidth = window.screen.availWidth;
+ 	screenHight = window.screen.availHeight;
+ 	if(screenWidth>500 && screenHight>500){
+ 		numberCellWidth = 100;
+ 		spaceWidth = 20;
+ 		gridContainerWidth = 500;
+ 	}else{
+ 		 $("#intro").css("display","none");
+	 	if(screenWidth>screenHight){
+	 		numberCellWidth = screenHight*0.18;
+	 		spaceWidth = screenHight*0.04;
+	 		gridContainerWidth = screenHight*0.92;
+	 	}else{
+	 		numberCellWidth = screenWidth*0.18;
+	 		spaceWidth = screenWidth*0.04;
+	 		gridContainerWidth = screenWidth*0.92;
+	 	}
+ 	}
+ 	$(".grid_container").css({
+	 		"width":gridContainerWidth,
+	 		"height":gridContainerWidth
+	 	});
+	$(".grid").css({
+	 		"width":numberCellWidth,
+	 		"height":numberCellWidth 		
+	 	})
+}
 function isGameOver(){
 	debugger;
 	if(nospace() && !canMove()){
@@ -71,10 +148,10 @@ function init(){
 	update();
 }
 function getleft(i){
-	return 20+120*i;
+	return spaceWidth+(numberCellWidth+spaceWidth)*i;
 }
 function getTop(j){
-	return 20+120*j;
+	return spaceWidth+(numberCellWidth+spaceWidth)*j;
 }
 function update(){
 	debugger
@@ -85,19 +162,22 @@ function update(){
 			$(".grid_container").append("<div class='number' id='number_"+i+"_"+j+"'></div>")
 			number = $("#number_"+i+"_"+j);
 			if(grids[i][j] ==0){
-				number.css("left",getleft(j)+50);
-				number.css("top",getTop(i)+50);
+				number.css("left",getleft(j)+numberCellWidth/2);
+				number.css("top",getTop(i)+numberCellWidth/2);
 				number.css("width",0);
 				number.css("height",0);
 
 			}else{
+				number.css("line-height",numberCellWidth+"px");
 				if(grids[i][j] >= 1024){
-					number.css("font-size","40px")
+					number.css("font-size",numberCellWidth*0.4);
+				}else{
+					number.css("font-size",numberCellWidth*0.6);
 				}
 				number.css("left",getleft(j));
 				number.css("top",getTop(i));
-				number.css("width","100px");
-				number.css("height","100px");
+				number.css("width",numberCellWidth);
+				number.css("height",numberCellWidth);
 				number.css("background-color",showNumberColor(grids[i][j]))
 				number.text(grids[i][j]);
 
@@ -190,9 +270,11 @@ function showNumber(i,j,randomNumber){
 	var numbercell = $("#number_"+i+"_"+j);
 	numbercell.text(randomNumber);
 	numbercell.css("background-color",showNumberColor(randomNumber));
+	numbercell.css("font-size",numberCellWidth*0.6);
+	numbercell.css("line-height",numberCellWidth+"px");
 	numbercell.animate({
-		width:"100px",
-		height:"100px",
+		width:numberCellWidth,
+		height:numberCellWidth,
 		top:getTop(i),
 		left:getleft(j)
 	},50);
