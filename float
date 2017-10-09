@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.content{
+			background-color: #55e850;
+			width: 200px;
+			border: 1px solid black;
+		}
+		.floatdiv{
+			height: 50px;
+			width: 50px;
+			background-color: #e85050;
+		}
+		.nofloatdiv{
+			background-color: #5bccfd;
+		}
+		.fl{
+			float: left;
+		}
+		.clearfix1{
+			clear: both;
+		}
+		.clearfix{
+			zoom:1;
+		}
+		.clearfix::after{
+			content: "";
+			clear: both;
+			display: block;
+			visibility: hidden;
+			height: 0;
+		}
+		.of{
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<h3>没添加浮动</h1>
+	<div class="content">
+		<div class="floatdiv"></div>
+	</div>
+	<h3>添加浮动</h1>
+	<div class="content">
+		<div class="floatdiv fl"></div>
+	</div>
+	<div style="height:50px"></div>	
+	<h3>添加块级元素清除浮动</h1>
+	<div class="content">
+		<div class="floatdiv fl"></div>
+		<div class="clearfix1"></div>
+	</div>
+	<h3>after伪元素清除浮动</h1>
+	<div class="content clearfix">
+		<div class="floatdiv fl"></div>
+	</div>
+	<h3>设置overflow</h1>
+	<div class="content of">
+		<div class="floatdiv fl"></div>
+	</div>						
+</body>
+</html>
