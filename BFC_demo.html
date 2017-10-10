@@ -1,0 +1,64 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style>
+    .par {
+        border: 5px solid #fcc;
+        width: 300px;
+    }
+ 
+    .child {
+        border: 5px solid #f66;
+        width:100px;
+        height: 100px;
+        float: left;
+    }
+    p {
+        color: #f55;
+        background: #fcc;
+        width: 200px;
+        line-height: 100px;
+        text-align:center;
+        margin: 100px;
+    }  
+    body {
+        width: 300px;
+        position: relative;
+    }
+ 
+    .aside {
+        width: 100px;
+        height: 150px;
+        float: left;
+        background: #f66;
+    }
+ 
+    .main {
+        height: 200px;
+        background: #fcc;
+        /*overflow: hidden;*/
+    }  
+    .wrap {
+        overflow: hidden;
+    }
+</style>
+</head>
+<body>
+	<h1>清除浮动</h1>
+    <div class="par">
+        <div class="child"></div>
+    </div>
+    <h1>防止margin重叠</h1>
+    <p>Haha</p>
+    <p>Hehe</p>
+
+    <p>Haha</p>
+    <div class="wrap">
+        <p>Hehe</p>
+    </div>
+    <h1> 自适应两栏布局</h1>
+    <div class="aside"></div>
+    <div class="main"></div>
+</body>
+</html>
