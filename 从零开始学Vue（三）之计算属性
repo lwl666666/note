@@ -1,0 +1,50 @@
+从零开始学Vue（三）之计算属性
+### 为什么要使用计算属性？
+在模板中使用表达式十分的便利，但它设计的初衷是为了解决简单的逻辑运算，如果在模板中放入过多的逻辑会使模板难以维护，例如：
+``` bash
+<span>{{message.split('').reverse().join('')}}</span>
+```
+这段表达式的作用是用来得出message的翻转值，当模板中多次使用这个值的时候，这段代码将会出现多次，这样很不利于后期的维护。这时使用计算属性可以很方便的解决这个问题
+### 怎么使用计算属性
+声明计算属性和声明函数是类似的。
+``` bash
+<p>翻转：{{reverseMessage}}</p>
+```
+``` bash
+	var demo1 = new Vue({
+		el:"#demo1",
+		data(){
+			return {
+				message:"Hello"
+			}
+		},
+		computed:{
+			reverseMessage:function(){
+				return this.message.split('').reverse().join('');
+			}
+		}
+	});
+```
+我们声明的reverseMessage将用做属性demo1的getter函数，demo1.reverseMessage依赖于demo1.message，当demo1.message改变,demo1.reverseMessage也会随之改变。而且最妙的是我们是声明式地创建这种依赖关系：计算属性的 getter 是干净无副作用的。
+### 计算属性 VS方法
+有心人可能发现我们用同一个函数定义为方法，在表达式调用方法可以达到上面同样的效果。
+``` bash
+<p>翻转：{{reverseMessage()}}</p>
+```
+``` bash
+	var demo1 = new Vue({
+		el:"#demo1",
+		data(){
+			return {
+				message:"Hello"
+			}
+		},
+		methods:{
+			reverseMessage:function(){
+				return this.message.split('').reverse().join('');
+			}
+		}
+	});
+```
+虽然两种方法在实现结果上一致，但计算属性是基于他们之间的依赖关系进行缓存的，只有当message发生改变的时候，reverseMessage才会重新计算，
+，
