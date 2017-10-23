@@ -62,7 +62,7 @@
 	});
 	</script>
 ```
-### prop验证
+#### prop验证
 组件可以为prop指定验证要求
 ``` bash
 Vue.component("test",{
