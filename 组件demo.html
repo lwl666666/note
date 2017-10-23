@@ -1,0 +1,101 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>组件Demo</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="demo1">
+		<global></global>
+		<child></child>
+	</div>
+	<div id="demo2">
+		<child :message="msg"></child>
+	</div>
+	<div id="demo3">
+		<p>{{total}}</p>
+		<count-add-btn v-on:addtotal="totalAdd"></count-add-btn>
+		<count-less-btn v-on:lesstotal="totalLess"></count-less-btn>
+	</div>
+	<script type="text/javascript">
+	//注册全局组件
+	Vue.component("global",{
+		template:"<h1>我是一个全局注册的组件</h1>"
+	});
+	//定义局部组件
+	var child=Vue.extend({
+		template:"<h2>我是一个局部注册的组件</h2>"
+	});
+	new Vue({
+		el:"#demo1",
+		//注册局部组件
+		components:{
+			child:child
+		}
+	});	
+
+	//定义局部组件
+	var child2=Vue.extend({
+		template:"<h2>{{message}}</h2>",
+		props:["message"]
+	});
+	new Vue({
+		el:"#demo2",
+		data(){
+			return {
+				msg:"我来自父组件"
+			}
+		},
+		components:{
+			child:child2
+		}
+	});
+
+	Vue.component("countAddBtn",{
+		template:"<button v-on:click='add'>{{count}}</button>",
+		data(){
+			return {
+				count:0
+			}
+		},
+		methods:{
+			add:function(){
+				debugger;
+				this.count++;
+				this.$emit("addtotal");
+			}
+		}
+	});
+	Vue.component("countLessBtn",{
+		template:"<button v-on:click='less'>{{count}}</button>",
+		data(){
+			return {
+				count:0
+			}
+		},
+		methods:{
+			less:function(){
+				this.count--;
+				this.$emit("lesstotal");
+			}
+		}
+	});	
+	new Vue({
+		el:"#demo3",
+		data(){
+			return {
+				total:0
+			}
+		},
+		methods:{
+			totalAdd:function(){
+				this.total++;
+			},
+			totalLess:function(){
+				this.total--;
+			}
+		}
+	});
+	</script>
+</body>
+</html>
