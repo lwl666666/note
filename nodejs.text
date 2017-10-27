@@ -1,0 +1,49 @@
+require
+global
+__filename
+__dirname
+module.exports
+
+var eventEmitter = require("events").EventEmitter
+var ee = new eventEmitter();
+ee.on(eventname,callback);//once
+ee.emit(eventname,args);
+ee.removeListener(eventname,listener);//removeAllListeners
+ee.listeners(eventname) //返回所有注册eventname的监听集合
+ee.setMaxListeners(n)
+
+process
+Buffer
+
+fs
+fs.open(path, flags, [mode], [callback(err, fd)])
+fs.openSync(path, flags, [mode])
+fs.read(fd, buffer, offset, length, position, [callback(err, bytesRead, buffer)])
+fs.write(fd, buffer, offset, length, position, [callback])
+fs.writeFile(filename, data, [encoding], [callback])
+fs.appendFile(filename, data, encoding='utf8', [callback])
+fs.exists(path, [callback])
+fs.readFile(filename, [encoding], [callback]) 
+fs.unlink(path, [callback])
+fs.rename(oldPath, newPath, [callback]) 
+fs.stat(path, [callback])
+fs.watch(filename, [options], listener) 
+fs.mkdir(path, [mode], [callback])
+fs.rmdir(path, [callback])
+fs.readdir(path, [callback])
+
+http 
+http.createServer([requestListener])
+server.listen(port, [hostname], [backlog], [callback])
+request
+data
+end
+response.end([data], [encoding])
+response.write(chunk, [encoding])
+response.writeHead(statusCode, [reasonPhrase], [headers])
+
+
+URL
+url.parse(urlStr, [parseQueryString], [slashesDenoteHost])
+querystring
+querystring.parse(str, [sep], [eq], [options])
